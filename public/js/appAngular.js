@@ -13,22 +13,10 @@ angular.module('taskApp',['ui.router'])
             });
         $urlRouterProvider.otherwise('alta');
     })
-    .factory('comun', function(){
+    .factory('comun', function($http){
         var comun = {}
 
-        comun.tareas = [{
-            nombre: 'Comprar Comida',
-            prioridad: 1   
-        },{
-            nombre: 'Lavar el Auto',
-            prioridad: 0   
-        },{
-            nombre: 'Crear una App en Angular',
-            prioridad: 2   
-        },{
-            nombre: 'Pintar la casa',
-            prioridad: 2   
-        }]
+        comun.tareas = []
 
         comun.tarea = {}; //Se utilizara para editar
 
@@ -36,11 +24,24 @@ angular.module('taskApp',['ui.router'])
             var indice = comun.tareas.indexOf(tarea);
             comun.tareas.splice(indice,1);
         }
+
+        /*** Seccion de Metodos remotos ***/
+        comun.getALL = function(){
+            return $http.get('/tareas')
+            .success(function(data){
+                angular.copy(data,comun.tareas)                
+                return comun.tareas
+            })
+        }
+
         return comun;
     })
     .controller('ControlAgregar', function($scope, $state, comun){
         $scope.tarea = {};
         //$scope.tareas = [];
+
+        comun.getALL();
+
         $scope.tareas = comun.tareas;
 
         $scope.prioridades = ['Baja', 'Normal', 'Alta']
