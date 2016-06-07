@@ -27,7 +27,19 @@ router.post('/tarea', function(req, res, next){
 		if (err) {return next(err)}
 			res.json(tarea);
 	})
+})
 
+// PUT - Actualizar Tarea
+router.put('/tarea/:id', function(req, res){
+	Tareas.findById(req.params.id, function(err, tarea){
+		tarea.nombre = req.body.nombre;
+		tarea.prioridad = req.body.prioridad;
+
+		tarea.save(function(err){
+			if(err){res.send(err)}
+			res.json(tarea);
+		});
+	})
 })
 
 module.exports = router;
