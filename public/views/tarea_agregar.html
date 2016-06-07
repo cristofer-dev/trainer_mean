@@ -1,0 +1,45 @@
+<legend>Nueva Tarea</legend>
+    <div class="form-group">
+        <form action="">
+            <div class="row">
+                <div class="col-md-8">
+                    <label class="control-label" for="inputDefault">Nueva Tarea</label>
+                    <input class="form-control" id="inputDefault" type="text" ng-model="tarea.nombre">
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label" for="inputDefault">Prioridad</label>
+                    <select class="form-control" id="select" ng-model="tarea.prioridad">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label class="control-label" for="inputDefault">Guardar</label><br>
+                    <button type="submit" id="submit" class="btn btn-success" ng-click="agregar()">Agregar</button>
+                </div>                    
+            </div>
+        </form>
+    </div>                
+
+    <div class="row">
+        <div class="col-md-10 col-lg-10 col-lg-offset-1">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <td>Prioridad</td>
+                    <td>Tarea</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="tarea in tareas | orderBy:'-prioridad'">
+                    <td>{{prioridades[tarea.prioridad]}} 
+                        <a href="#" class="glyphicon glyphicon-circle-arrow-up" ng-click="masPrioridad(tarea)" ng-hide="tarea.prioridad==2"></a>
+                        <a href="#" class="glyphicon glyphicon-circle-arrow-down" ng-click="menosPrioridad(tarea)" ng-hide="tarea.prioridad==0"></a>
+                    </td>
+                    <td>{{tarea.nombre}}</td>                    
+                    <td><span class="btn btn-warning btn-xs" ng-click="procesaObjeto(tarea)">Editar </span></td>
+                    <td><span class="btn btn-danger btn-xs" ng-click="eliminar(tarea)">Eliminar</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,36 @@
+       <legend>Editar Tarea</legend>
+            <div class="form-group">
+            <form action="">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label" for="inputDefault">Tarea</label>
+                        <input class="form-control" id="inputDefault" type="text" ng-model="tarea.nombre" value="{{tarea.nombre}}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="control-label" for="inputDefault">Prioridad</label>
+                        <select class="form-control" id="select" ng-model="tarea.prioridad">
+                            <option value="{{tarea.prioridad}}" selected>{{tarea.prioridad}}</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <br>
+                        <button type="submit" id="submit" class="btn btn-success" ng-click="actualizar()">Actualizar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <br>
+                        <button type="submit" id="submit" class="btn btn-danger" ng-click="eliminar()">Eliminar</button>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-5">
+                        <br>
+                        <a href="#" ui-sref="alta" class="btn btn-primary">Cancelar</a>
+                    </div>
+
+                    
+                </div>
+            </form>
+            </div> 
