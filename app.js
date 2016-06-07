@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/tareas')
+mongoose.connect('mongodb://localhost/tareas');
 
-require('.models/tareas'); // Incluye el modelo de la BD
+require('./models/Tareas'); // Incluye el modelo de la BD
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
