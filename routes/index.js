@@ -19,5 +19,15 @@ router.get('/tareas', function(req, res, next) {
 		})
 })
 
+// POST - Agregar Tarea
+router.post('/tarea', function(req, res, next){
+	var tarea = new Tareas(req.body);
+
+	tarea.save(function(err, tarea){
+		if (err) {return next(err)}
+			res.json(tarea);
+	})
+
+})
 
 module.exports = router;
